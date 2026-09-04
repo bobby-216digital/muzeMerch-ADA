@@ -1,0 +1,80 @@
+{%- capture block_class -%}
+  site-footer-block-item
+  site-footer-block-{{ block.type | replace: '_', '-' }}
+  {% if block.type == 'menu' %}has-accordion{% endif %}
+{%- endcapture -%}
+
+<div class="{{ block_class | strip_newlines }}" {{ block.shopify_attributes }}>
+
+  {% if block.type == 'menu' %}
+      <h2 class="site-footer-block-title" data-accordion-trigger>
+        {{ linklists[block.settings.menu].title | escape }}
+
+        <span class="site-footer-block-icon accordion--icon">
+          {% render 'icon-chevron-down' %}
+        </span>
+      </h2>
+
+      <div class="site-footer-block-content">
+        {%
+          render 'navlist',
+          menu_list: linklists[block.settings.menu].links,
+          depth: 1,
+          max_depth: 1,
+          aria_expanded: false,
+          accordion_level: 1,
+        %}
+      </div>
+  {% elsif block.type == 'rich_text' or block.type == 'newsletter' %}
+    {% if block.settings.title != blank %}
+      <h2 class="site-footer-block-title">
+        {{ block.settings.title | escape }}
+      </h2>
+    {% endif %}
+
+    {% if block.settings.text != blank %}
+      <div class="site-footer-block-content rte">
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+    {% if block.type == 'newsletter' %}
+      {% assign form_id = 'footer_newsletter_' | append: block.id %}
+      {%
+        render 'newsletter',
+        form_id: form_id,
+        input_id: 'footer_newsletter_email'
+      %}
+    {% endif %}
+  {% elsif block.type == 'social_accounts' %}
+    {%
+      render 'social-list',
+      context: 'footer',
+    %}
+  {% elsif block.type == 'rich-text-venue' %}
+    <h2 class="site-footer-block-title">
+      Questions?
+    </h2>
+    {% if template.name == 'collection' %}
+      {% assign credit_store_no = collection.metafields.custom.credit_store_no %}
+    {% elsif template.name == 'product' %}
+      {% assign credit_store_no = product.variants.first.metafields.custom.credit_store_no %}
+    {% endif %}
+    {% if credit_store_no != blank and credit_store_no != '1636' %}
+      <div class="site-footer-block-content rte">
+        {{ metaobjects['collection_footer'][credit_store_no].questions_content | metafield_tag }}
+      </div>
+    {% endif %}
+  {% elsif block.type == 'logo' %}
+    <img src="https://cdn.shopify.com/s/files/1/0723/0147/8118/files/logo_muzemerch.webp?v=1773166779" style="display: block; width: 100%; max-width: 240px; margin-bottom: 24px;">
+  {% elsif block.type == 'logo-venue' %}
+    {% if template.name == 'collection' %}
+      {% assign credit_store_no = collection.metafields.custom.credit_store_no %}
+    {% elsif template.name == 'product' %}
+      {% assign credit_store_no = product.variants.first.metafields.custom.credit_store_no %}
+    {% endif %}
+    {% if credit_store_no != blank and credit_store_no != '1636' %}
+      <img src="{{ metaobjects['collection_footer'][credit_store_no].logo | image_url: width: 400 }}" style="display: block; width: 100%; max-width: 200px; margin-bottom: 24px;">
+    {% endif %}
+  {% endif %}
+</div>

@@ -1,0 +1,51 @@
+<style>
+    .venue-logos-container {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 0 auto;
+    }
+
+    .venue-logos-image {
+        max-width: 100%;
+        max-height: 120px;
+        object-fit: contain;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .venue-logos-container {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+    }
+</style>
+
+<div class="content-width section-spacing collection-list__container" style="padding: 0 8px;">
+    <h2 class="home-section--title">{{ section.settings.title }}</h2>
+    <div class="venue-logos-container">
+        {% for link in linklists['featured-venues-list'].links %}
+        <a href="{{ link.url }}" style="width: 100%; display: flex; align-items: center; justify-content: center;">
+            <img class="venue-logos-image" src="{{ link.object.image | image_url }}" alt="{{ link.title }}" />
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured venues list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Featured Venues"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Featured venues list",
+    }
+  ]
+}
+{% endschema %}

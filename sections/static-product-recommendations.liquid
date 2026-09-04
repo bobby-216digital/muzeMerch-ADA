@@ -1,0 +1,116 @@
+{% if section.settings.show_product_recommendations %}
+  {% assign product_limit = 5 %}
+  {% assign request_limit = 10 %}
+
+  <script
+    type="application/json"
+    data-section-type="static-product-recommendations"
+    data-section-id="{{ section.id }}"
+    data-section-data
+    >
+{
+  "settings": {
+    "limit": {{ request_limit }}
+  },
+    "productId": {{ product.id | json }},
+    "sectionId": {{ section.id | json }}
+}
+  </script>
+
+  {% liquid
+    assign venue_store_no = product.variants.first.metafields.custom.credit_store_no
+    assign venue_collection = blank
+
+    if venue_store_no != blank
+      for candidate_collection in product.collections
+        if candidate_collection.metafields.custom.credit_store_no == venue_store_no
+          assign venue_collection = candidate_collection
+          break
+        endif
+      endfor
+    endif
+
+    assign selected_handles = ' '
+
+    for recommended_product in recommendations.products
+      assign selected = selected_handles | split: ' '
+      if selected.size >= product_limit
+        break
+      endif
+      if venue_store_no != blank
+        assign recommended_store_no = recommended_product.variants.first.metafields.custom.credit_store_no
+        unless recommended_store_no == venue_store_no
+          continue
+        endunless
+      endif
+      assign selected_handles = selected_handles | append: recommended_product.handle | append: ' '
+    endfor
+
+    for venue_product in venue_collection.products
+      assign selected = selected_handles | split: ' '
+      if selected.size >= product_limit
+        break
+      endif
+      if venue_product.id == product.id
+        continue
+      endif
+      unless venue_product.variants.first.metafields.custom.credit_store_no == venue_store_no
+        continue
+      endunless
+      assign venue_product_needle = ' ' | append: venue_product.handle | append: ' '
+      unless selected_handles contains venue_product_needle
+        assign selected_handles = selected_handles | append: venue_product.handle | append: ' '
+      endunless
+    endfor
+
+    assign selected_handles = selected_handles | split: ' '
+  %}
+
+  <section
+    class="product-section--container product-row--container product-recommendations--container"
+    data-html
+    data-product-recommendations
+    >
+    {% if selected_handles.size > 0 %}
+      <h2 class="product-section--title product-recommendations--title">
+        {{ section.settings.product_recommendations_heading }}
+      </h2>
+
+    <div
+      class="product-section--content product-row"
+      data-product-row
+      >
+      {% for selected_handle in selected_handles limit: product_limit %}
+        {%
+          render 'product-grid-item',
+          product: all_products[selected_handle],
+        %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </section>
+
+  {% render 'quick-shop' %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.product_recommendations.name",
+  "class": "product-recommendations--section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_recommendations",
+      "label": "t:sections.product_recommendations.show_product_recommendations.label",
+      "info": "t:sections.product_recommendations.show_product_recommendations.info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "product_recommendations_heading",
+      "label": "t:sections.product_recommendations.product_recommendations_heading.label",
+      "default": "You may also like"
+    }
+  ]
+}
+{% endschema %}
