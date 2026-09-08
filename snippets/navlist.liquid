@@ -141,7 +141,7 @@
           {% if depth == 3 %}
             {% assign favicon_image = menu_item.handle | append: '-favi.png' | file_img_url %}
             <div style="display: flex; align-items: flex-start; justify-content: flex-start;">
-              <img style="display: block; width: 16px; margin-top: 2px; margin-right: 12px;" src="{{ favicon_image }}">
+              <img style="display: block; width: 16px; margin-top: 2px; margin-right: 12px;" src="{{ favicon_image }}" alt="">
               <span style="display: block;">{{ menu_item.title }}</span>
             </div>
           {% else %}
