@@ -46,11 +46,13 @@
           article: article
           %}
       {% else %}
-        <article class="blog--no-results">
-          <h2 class="blog--no-results-title">
-            {{ 'blog.general.empty_blog' | t }}
-          </h2>
-        </article>
+        <li>
+          <article class="blog--no-results">
+            <h2 class="blog--no-results-title">
+              {{ 'blog.general.empty_blog' | t }}
+            </h2>
+          </article>
+        </li>
       {% endfor %}
     </ul>
 

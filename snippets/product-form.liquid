@@ -558,16 +558,16 @@
   {% if product.tags contains 'Personalization Form' %}
     <div class="personalization-form-fields">
       <div style="margin-bottom: 12px;">
-        <label style="text-transform: none; letter-spacing: 1px;">First Name <span style="color: rgb(224, 43, 39);">*</span></label>
-        <input style="margin-bottom: 4px;" type="text" name="properties[First Name]" maxlength="16" required="true">
+        <label for="personalization-first-name" style="text-transform: none; letter-spacing: 1px;">First Name <span style="color: rgb(224, 43, 39);">*</span></label>
+        <input id="personalization-first-name" style="margin-bottom: 4px;" type="text" name="properties[First Name]" maxlength="16" required="true">
       </div>
       <div style="margin-bottom: 12px;">
-        <label style="text-transform: none; letter-spacing: 1px;">Last Name <span style="color: rgb(224, 43, 39);">*</span></label>
-        <input style="margin-bottom: 4px;" type="text" name="properties[Last Name]" maxlength="16" required="true">
+        <label for="personalization-last-name" style="text-transform: none; letter-spacing: 1px;">Last Name <span style="color: rgb(224, 43, 39);">*</span></label>
+        <input id="personalization-last-name" style="margin-bottom: 4px;" type="text" name="properties[Last Name]" maxlength="16" required="true">
       </div>
       <div style="margin-bottom: 12px;">
-        <label style="text-transform: none; letter-spacing: 1px;">Future Date <span style="color: rgb(224, 43, 39);">*</span></label>
-        <input style="margin-bottom: 4px;" type="text" name="properties[Future Date]" maxlength="24" required="true">
+        <label for="personalization-future-date" style="text-transform: none; letter-spacing: 1px;">Future Date <span style="color: rgb(224, 43, 39);">*</span></label>
+        <input id="personalization-future-date" style="margin-bottom: 4px;" type="text" name="properties[Future Date]" maxlength="24" required="true">
         <p style="font-size: 12px;">Requires minimum of 72 hours lead time</p>
       </div>
     </div>

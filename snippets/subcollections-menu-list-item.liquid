@@ -47,9 +47,9 @@
 
 <li class="subcollections-menu__item" {% if block %}{{ block.shopify_attributes }}{% endif %}>
   <div class="subcollections-menu__item-wrapper subcollections-menu__item-align--{{ image_align }}">
-  {% if hasNoSublinks %}<a href="{{current_collection.url}}" class="subcollections-link-item"></a>{% endif %}
+  {% if hasNoSublinks %}<a href="{{current_collection.url}}" class="subcollections-link-item" aria-label="{{ collection_title | escape }}"></a>{% endif %}
     <div class="subcollections-menu__item-image-container">
-      <a href="{{ current_collection.url }}">
+      <a href="{{ current_collection.url }}" aria-label="{{ collection_title | escape }}">
         <figure class="subcollections-menu__item-image">
           {% unless onboard or collection_image == blank %}
             {%
@@ -85,7 +85,7 @@
         {% if hasSublinks %}{{ collection_links }}{% endif %}
         {% if cta_text != blank %}
           <li class="subcollections-menu__link-item accordion--icon">
-            <a href="{{ current_collection.url }}">
+            <a href="{{ current_collection.url }}" aria-label="{{ cta_text }} {{ collection_title }}">
               {{ cta_text }}
               {% render 'icon-library', id: 'icon-signpost-arrow' %}
             </a>

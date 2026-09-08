@@ -163,10 +163,12 @@
       <div style="background: {{ metaobjects['collection_header'][credit_store_no].background_css_value }};">
         <div class="custom-header">
           <div class="custom-header-logo-title">
-            <a {% if template.name == 'collection' %}onclick="scrollToTarget()"{% elsif template.name == 'product' %}href="{{ collections[metaobjects['collection_header'][credit_store_no].collection_url].url }}"{% endif %} style="cursor: pointer;">
-              <img src="{{ metaobjects['collection_header'][credit_store_no].logo | image_url: height: 200 }}" style="width: auto; max-width: 320px; height: auto; max-height: 100px; margin-right: 24px;">
+            <a {% if template.name == 'collection' %}onclick="scrollToTarget()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();scrollToTarget();}" role="button" tabindex="0"{% elsif template.name == 'product' %}href="{{ collections[metaobjects['collection_header'][credit_store_no].collection_url].url }}"{% endif %} style="cursor: pointer;">
+              <img src="{{ metaobjects['collection_header'][credit_store_no].logo | image_url: height: 200 }}" alt="{{ metaobjects['collection_header'][credit_store_no].title | default: collection.title | default: shop.name | escape }}" style="width: auto; max-width: 320px; height: auto; max-height: 100px; margin-right: 24px;">
             </a>
-            <h4 style="color: {{ metaobjects['collection_header'][credit_store_no].title_color }};">{{ metaobjects['collection_header'][credit_store_no].title }}</h4>
+            {% if metaobjects['collection_header'][credit_store_no].title != blank %}
+              <h4 style="color: {{ metaobjects['collection_header'][credit_store_no].title_color }};">{{ metaobjects['collection_header'][credit_store_no].title }}</h4>
+            {% endif %}
           </div>
           {% if metaobjects['collection_header'][credit_store_no] == '1551' %}
             <div>
@@ -175,7 +177,7 @@
           {% else %}
             <div>
               <a class="button-primary" style="color: {{ metaobjects['collection_header'][credit_store_no].button_text_color }}; background-color: {{ metaobjects['collection_header'][credit_store_no].button_color }}; margin-right: 16px;" href="{{ metaobjects['collection_header'][credit_store_no].visit_us }}" target="_blank">Visit Us</a>
-              <a class="button-primary" style="color: {{ metaobjects['collection_header'][credit_store_no].button_text_color }}; background-color: {{ metaobjects['collection_header'][credit_store_no].button_color }}; margin-right: 16px;" {% if template.name == 'collection' %}onclick="scrollToTarget()"{% elsif template.name == 'product' %}href="{{ collections[metaobjects['collection_header'][credit_store_no].collection_url].url }}"{% endif %}>Shop Now</a>
+              <a class="button-primary" style="color: {{ metaobjects['collection_header'][credit_store_no].button_text_color }}; background-color: {{ metaobjects['collection_header'][credit_store_no].button_color }}; margin-right: 16px;" {% if template.name == 'collection' %}onclick="scrollToTarget()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();scrollToTarget();}" role="button" tabindex="0"{% elsif template.name == 'product' %}href="{{ collections[metaobjects['collection_header'][credit_store_no].collection_url].url }}"{% endif %}>Shop Now</a>
               <a class="button-primary" style="color: {{ metaobjects['collection_header'][credit_store_no].button_text_color }}; background-color: {{ metaobjects['collection_header'][credit_store_no].button_color }};" href="/pages/about-muzemerch">About MuzeMerch</a>
             </div>
           {% endif %}

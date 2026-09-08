@@ -6,7 +6,7 @@
 {% if collection.all_tags.size > 0 and filter_style != 'none' %}
   {% capture cat_array %}{%- render 'advanced-tag-loop', block: block -%}{% endcapture %}
   {% assign cat_array = cat_array | split: '|' %}
-  <div class="productgrid--sidebar-section" aria-label="Filters" data-productgrid-filters-content>
+  <div class="productgrid--sidebar-section" data-productgrid-filters-content>
     <nav
       aria-label="Collection filters"
     >

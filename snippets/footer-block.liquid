@@ -66,7 +66,7 @@
       </div>
     {% endif %}
   {% elsif block.type == 'logo' %}
-    <img src="https://cdn.shopify.com/s/files/1/0723/0147/8118/files/logo_muzemerch.webp?v=1773166779" style="display: block; width: 100%; max-width: 240px; margin-bottom: 24px;">
+    <img src="https://cdn.shopify.com/s/files/1/0723/0147/8118/files/logo_muzemerch.webp?v=1773166779" alt="{{ shop.name | escape }}" style="display: block; width: 100%; max-width: 240px; margin-bottom: 24px;">
   {% elsif block.type == 'logo-venue' %}
     {% if template.name == 'collection' %}
       {% assign credit_store_no = collection.metafields.custom.credit_store_no %}
@@ -74,7 +74,7 @@
       {% assign credit_store_no = product.variants.first.metafields.custom.credit_store_no %}
     {% endif %}
     {% if credit_store_no != blank and credit_store_no != '1636' %}
-      <img src="{{ metaobjects['collection_footer'][credit_store_no].logo | image_url: width: 400 }}" style="display: block; width: 100%; max-width: 200px; margin-bottom: 24px;">
+      <img src="{{ metaobjects['collection_footer'][credit_store_no].logo | image_url: width: 400 }}" alt="{{ collection.title | default: shop.name | escape }}" style="display: block; width: 100%; max-width: 200px; margin-bottom: 24px;">
     {% endif %}
   {% endif %}
 </div>

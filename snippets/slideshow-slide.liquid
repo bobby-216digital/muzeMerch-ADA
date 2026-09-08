@@ -104,6 +104,7 @@
 
 <div
   class="slideshow-slide {% if block_slide_image_mobile != blank %}slideshow-slide--mobile{% endif %} {{ block_class }}"
+  role="group"
   aria-label="{{ 'sections.slideshow.slide_counter' | t: count: slide_number, total: section.blocks.size }}"
   {% if block_text_color != blank %}data-text-color="{{ block_text_color }}"{% endif %}
   tabindex="-1"

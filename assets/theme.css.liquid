@@ -23442,7 +23442,8 @@ body:not(.user-is-tabbing) .surface-pick-up-embed__modal-btn:focus {
 }
 .site-navigation .navmenu-link-depth-1.navmenu-item-active:focus,
 .site-navigation .site-header-account-link a.navmenu-item-active:focus {
-  outline: none;
+  outline: solid {{ settings.color_header_text | color_modify: 'alpha', 0.5 }};
+  outline-offset: -5px;
 }
 .site-navigation .navmenu-basic__item .navmenu-icon {
   position: absolute;
