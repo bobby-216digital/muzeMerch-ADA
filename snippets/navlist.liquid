@@ -167,7 +167,6 @@
         {% if is_mobile != true %}
           <details data-navmenu-details>
           <summary
-            role="button"
             data-href="{{ menu_item.url }}"
         {% else %}
           <a
@@ -178,7 +177,6 @@
             aria-expanded="true"
           {% else %}
             aria-haspopup="true"
-            aria-expanded="false"
           {% endif %}
         >
           {{ menu_item_image_markup }}

@@ -76,7 +76,6 @@
           {% if has_subnav %}
             <details data-navmenu-details>
             <summary
-              role="button"
               data-href="{{ menu_item.url }}"
           {% else %}
             <a
@@ -92,7 +91,6 @@
             "
             {% if has_subnav %}
               aria-haspopup="true"
-              aria-expanded="false"
           {% endif %}
           >
             <span class="navmenu-meganav-sidenav__submenu-wrapper">

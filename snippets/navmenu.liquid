@@ -71,7 +71,6 @@
       {% if show_subnav %}
         <details data-navmenu-details>
         <summary
-          role="button"
       {% else %}
         <a
       {% endif %}
@@ -83,7 +82,6 @@
         "
         {% if show_subnav %}
           aria-haspopup="true"
-          aria-expanded="false"
           {% comment %} Commenting out the below to prevent top level nav links from being clickable {% endcomment %}
           {% comment %} data-href="{{ menu_item.url }}" {% endcomment %}
         {% else %}
