@@ -23654,24 +23654,6 @@ body:not(.user-is-tabbing) .surface-pick-up-embed__modal-btn:focus {
   display: block;
 }
 
-/* The desktop dropdowns normally open on hover via JS. When a keyboard user
-   toggles the native <details> open, reveal the submenu too — but only while the
-   JS open animation is idle (no state set, or closed), so pointer-hover
-   animations are left untouched. */
-.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]),
-.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] {
-  display: block;
-  height: auto;
-  opacity: 1;
-}
-.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) > .navmenu-item,
-.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] > .navmenu-item,
-.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) .navmenu-meganav-wrapper:not(.meganav-ghost),
-.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] .navmenu-meganav-wrapper:not(.meganav-ghost) {
-  opacity: 1;
-  transform: none;
-}
-
 .site-main {
   display: contents;
   position: relative;
@@ -24757,4 +24739,18 @@ body:not(.user-is-tabbing) .rte .tabs .grouped-content-trigger {
 
 .site-footer-block-content.rte {
   overflow-wrap: anywhere;
+}
+
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]),
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] {
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) > .navmenu-item,
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] > .navmenu-item,
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) .navmenu-meganav-wrapper:not(.meganav-ghost),
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] .navmenu-meganav-wrapper:not(.meganav-ghost) {
+  opacity: 1;
+  transform: none;
 }

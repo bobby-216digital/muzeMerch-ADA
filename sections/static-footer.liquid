@@ -200,7 +200,7 @@
   {% assign credit_store_no = product.variants.first.metafields.custom.credit_store_no %}
 {% endif %}
 {% if credit_store_no != blank and credit_store_no != '1636' and metaobjects['collection_footer'][credit_store_no].connected_background_image != blank %}
-  <img src="{{ metaobjects['collection_footer'][credit_store_no].connected_background_image | image_url: width: 2000 }}" style="display: block; width: 100%;">
+  <img alt="{{ metaobjects['collection_footer'][credit_store_no].connected_background_image.alt | default: 'Store Collection Banner Description Coming Soon' | escape | strip_html }}" src="{{ metaobjects['collection_footer'][credit_store_no].connected_background_image | image_url: width: 2000 }}" style="display: block; width: 100%;">
 
   <style>
     .site-footer-wrapper {

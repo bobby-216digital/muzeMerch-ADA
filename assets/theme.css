@@ -22664,7 +22664,8 @@ rgb(255, 255, 255)
 }
 .site-navigation .navmenu-link-depth-1.navmenu-item-active:focus,
 .site-navigation .site-header-account-link a.navmenu-item-active:focus {
-  outline: none;
+  outline: solid rgba(29, 29, 29, 0.5);
+  outline-offset: -5px;
 }
 .site-navigation .navmenu-basic__item .navmenu-icon {
   position: absolute;
@@ -23972,4 +23973,18 @@ rgb(255, 255, 255)
 
 .site-footer-block-content.rte {
   overflow-wrap: anywhere;
+}
+
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]),
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] {
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) > .navmenu-item,
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] > .navmenu-item,
+.site-navigation details[open] > .navmenu-submenu:not([data-animation-state]) .navmenu-meganav-wrapper:not(.meganav-ghost),
+.site-navigation details[open] > .navmenu-submenu[data-animation-state="closed"] .navmenu-meganav-wrapper:not(.meganav-ghost) {
+  opacity: 1;
+  transform: none;
 }

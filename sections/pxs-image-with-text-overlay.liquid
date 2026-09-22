@@ -115,6 +115,7 @@
 
         {% if section.settings.link != blank %}
           <a
+            aria-label="{{ section.settings.image.alt | escape | strip_html }}"
             class="pxs-image-with-text-link"
             href="{{ section.settings.link }}"
           ></a>
